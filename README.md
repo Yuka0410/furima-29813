@@ -4,6 +4,7 @@
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
+| nickname | string | null: false |
 | name     | string | null: false |
 | email    | string | null: false |
 | password | string | null: false | 
@@ -11,6 +12,7 @@
 
 ###Association
 - has_many :items, purchases
+- has_one :address
 
 
 
@@ -19,24 +21,36 @@
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | text   | string | null: false |
-| image  | string | null: false |
 |user-id | string | null: false |
 | price  | string | null: false |
-|comments| string | null: false |#見本ではカラムは不必要？
+| name   | string | null: false |
 
 ###Association
 - belongs_to :user
-- has_many :comments
 - has_one :purchase
 
-## purchases テーブル？？？これは中間テーブルにすべきか？
+## purchases テーブル
 
 | Column  | Type   | Options     |
 | --------| ------ | ----------- |
-| address | string | null: false | #受け取り先のaddress
-| card    | string | null: false |
-| user-id | string | null: false | #配送者のprefecture?addressにまとめるか？
+| item-id | string | null: false | 
+| user-id | string | null: false |
 
 ###Association
 - belongs_to :user, item
+- has_one :address
+
+## address テーブル
+
+| Column  | Type   | Options     |
+| --------| ------ | ----------- |
+| address | string | null: false |
+| item-id | string | null: false | 
+| user-id | string | null: false |
+
+###Association
+- belongs_to :user
+- belongs_to :purchase
+
+
 

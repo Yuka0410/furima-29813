@@ -1,24 +1,42 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| name     | string | null: false |
+| email    | string | null: false |
+| password | string | null: false | 
+| birthday | string | null: false |
 
-* Ruby version
+###Association
+- has_many :items, purchases
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+## items テーブル
 
-* Database initialization
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+| text   | string | null: false |
+| image  | string | null: false |
+|user-id | string | null: false |
+| price  | string | null: false |
+|comments| string | null: false |#見本ではカラムは不必要？
 
-* How to run the test suite
+###Association
+- belongs_to :user
+- has_many :comments
+- has_one :purchase
 
-* Services (job queues, cache servers, search engines, etc.)
+## purchases テーブル？？？これは中間テーブルにすべきか？
 
-* Deployment instructions
+| Column  | Type   | Options     |
+| --------| ------ | ----------- |
+| address | string | null: false | #受け取り先のaddress
+| card    | string | null: false |
+| user-id | string | null: false | #配送者のprefecture?addressにまとめるか？
 
-* ...
+###Association
+- belongs_to :user, item
+

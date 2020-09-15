@@ -2,13 +2,14 @@
 
 ## users テーブル
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| nickname | string | null: false |
-| name     | string | null: false |
-| email    | string | null: false |
-| password | string | null: false | 
-| birthday | string | null: false |
+| Column      | Type    | Options     |
+| --------    | ------  | ----------- |
+| nickname    | string  | null: false |
+| family-name | string  | null: false |
+| first-name   | string  | null: false |
+| email       | string  | null: false |
+| password    | string  | null: false | 
+| birthday    | integer | null: false |
 
 ###Association
 - has_many :items, purchases
@@ -18,12 +19,12 @@
 
 ## items テーブル
 
-| Column | Type   | Options     |
-| ------ | ------ | ----------- |
-| text   | string | null: false |
-|user-id | string | null: false |
-| price  | string | null: false |
-| name   | string | null: false |
+| Column  | Type       | Options     |
+| ------  | ------     | ----------- |
+| text    | string     | null: false |
+| user    | references | null: false |
+| price   | integer    | null: false |
+| name    | string     | null: false |
 
 ###Association
 - belongs_to :user
@@ -31,10 +32,10 @@
 
 ## purchases テーブル
 
-| Column  | Type   | Options     |
-| --------| ------ | ----------- |
-| item-id | string | null: false | 
-| user-id | string | null: false |
+| Column | Type       | Options     |
+| ------ | ---------- | ----------- |
+| item   | references | null: false | 
+| user   | references | null: false |
 
 ###Association
 - belongs_to :user, item
@@ -42,11 +43,11 @@
 
 ## address テーブル
 
-| Column  | Type   | Options     |
-| --------| ------ | ----------- |
-| address | string | null: false |
-| item-id | string | null: false | 
-| user-id | string | null: false |
+| Column  | Type       | Options     |
+| --------| ------     | ----------- |
+| address | string     | null: false |
+| item    | references | null: false | 
+| user    | references | null: false |
 
 ###Association
 - belongs_to :user

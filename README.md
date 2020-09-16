@@ -15,7 +15,7 @@
 
 ###Association
 - has_many :items
-- has_many :purchase
+- has_many :purchases
 
 
 ## items テーブル
@@ -53,11 +53,11 @@
 
 | Column        | Type       | Options           |
 | ------------- | ---------- | ----------------- |
-| postal_code   | integer    | null: false       |
-| prefecture    | string     | null: false       |
-| municipality  | string     | null: false       |
-| block         | string     | null: false       |
-| building_name | string     |                   |
+| postal_code   | string     | null: false       |
+| prefecture    | integer    | null: false       |
+| municipality  | integer    | null: false       |
+| block         | integer    | null: false       |
+| building_name | integer    |                   |
 | phone_number  | integer    | null: false       |
 | purchase      | references | foreign_key: true | 
 

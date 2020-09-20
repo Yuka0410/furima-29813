@@ -14,25 +14,30 @@ class User < ApplicationRecord
     validates :birthday
   end
   validates :password, presence: true
-  validates :password, length: { minimum: 6 } # ,{ with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i }
+  validates :password, length: { minimum: 6 } 
   validates :password_confirmation, presence: true
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze # PASSWORD_REGEXの変数にpasswordを代入している
   validates_format_of :password, with: PASSWORD_REGEX, message: 'include both letters and numbers'
   validates_format_of :password_confirmation, with: PASSWORD_REGEX, message: 'include both letters and numbers'
 
   # with_options presence: true do もしdryに沿って文章整理するならこれ使う/error文変える必要あるため注意。
-
+  NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/
+  validates_format_of :family_name, with: NAME_REGEX, message: 'Full-width characters'
+  validates_format_of :first_name, with: NAME_REGEX, message: 'Full-width characters'
   validates :family_name, presence: true
-  validates :family_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'Full-width characters' }
   validates :first_name, presence: true
-  validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'Full-width characters' }
+  #validates :family_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'Full-width characters' }
+  #validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'Full-width characters' }
   # end
 
   # with_options presence: true do
+  KANA_REGEX = /\A[ァ-ヶー－]+\z/.freeze
+  validates_format_of :family_name_kana, with: KANA_REGEX, message: 'Full-width katakana characters'
+  validates_format_of :first_name_kana, with: KANA_REGEX, message: 'Full-width katakana characters'
   validates :family_name_kana, presence: true
-  validates :family_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'Full-width katakana characters' }
   validates :first_name_kana, presence: true
-  validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'Full-width katakana characters' }
+  #validates :family_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'Full-width katakana characters' }
+  #validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'Full-width katakana characters' }
   # end
 
   validates :email, presence: true

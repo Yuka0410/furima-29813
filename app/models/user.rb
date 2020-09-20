@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   # まだ他モデル未実装のためコメントアウト
-  # has_many :items
+  has_many :items
   # has_many :purchases
 
   # 注意！見本はfirst_name,last_nameにしているが本アプリはfamily_nameとfirst_nameにしてしまった

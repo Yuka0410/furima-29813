@@ -1,4 +1,5 @@
-# 先にテストコードで使うであろうファイルを生成した
-
-# raspecの導入はした
-# 画像の導入などまだ。chat_app参照
+FactoryBot.define do
+  factory :item do
+    
+  end
+end

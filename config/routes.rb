@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: 'items#index'  
   resources :items, only: [:index, :new, :create] #あとでpurchaseのresourcesネストするか？（スクショ参照）
   #end #resources :items doにするならいれる
+
 end

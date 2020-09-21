@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, except:[:index, :show]
   def index
     @items = Item.all
   end
@@ -13,6 +14,8 @@ class ItemsController < ApplicationController
     else
       render :new #itemの情報を持っていく
     end
+
+  
   end
 
   #def show
@@ -24,6 +27,8 @@ end
 
 private
 
-def item_params           #imageはActiveStorage使用
+ def item_params           #imageはActiveStorage使用
   params.require(:item).permit(:name, :text, :category, :condition, :payer, :area, :delivery_date, :price).merge(user_id: current_user.id)
-end
+ end
+
+

@@ -27,7 +27,7 @@ end
 private
 
  def item_params           #imageはActiveStorage使用
-  params.require(:item).permit(:name, :text, :category_id, :condition_id, :payer_id, :area_id, :delivery_date_id, :price, )#.merge(user_id: current_user.id)
+  params.require(:item).permit(:name, :text, :category_id, :condition_id, :payer_id, :area_id, :delivery_date_id, :price, :image)#.merge(user_id: current_user.id)
  end
 
 

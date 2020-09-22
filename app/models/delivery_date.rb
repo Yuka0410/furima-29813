@@ -1,4 +1,4 @@
-class DeliveryDate < ActiveHash::Base
+class DeliveryDate < ActiveHash::Base #モデルの性質上_はなくなりDate大文字になる
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '1~2日で発送' },

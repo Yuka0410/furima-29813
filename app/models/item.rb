@@ -13,7 +13,7 @@ class Item < ApplicationRecord
    validates :name, :text, :category, presence: true
    validates :category_id, numericality: { other_than: 1 }
    validates :name, :text, :condition, presence: true
-   validates :conditon_id, numericality: { other_than: 1 }
+   validates :condition_id, numericality: { other_than: 1 }
    validates :name, :text, :payer, presence: true
    validates :payer_id, numericality: { other_than: 1 }
    validates :name, :text, :area, presence: true

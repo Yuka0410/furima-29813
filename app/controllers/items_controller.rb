@@ -9,11 +9,13 @@ class ItemsController < ApplicationController
   end
 
   def create   #商品保存POST
+    
     @item = Item.new(item_params) #saveでif文のように保存成功可否を判定
-    if @item.save
-     redirect_to root_path #itemの情報を持っていかない
+    if @item.valid? 
+      @item.save
+      redirect_to root_path #itemの情報を持っていかない
     else
-      render :new #itemの情報を持っていく
+      render :new #バリデーションに弾かれた時itemの情報を持っていく
     end
   end
 
@@ -26,8 +28,8 @@ end
 
 private
 
- def item_params           #imageはActiveStorage使用
-  params.require(:item).permit(:name, :text, :category_id, :condition_id, :payer_id, :area_id, :delivery_date_id, :price, :image)#.merge(user_id: current_user.id)
+ def item_params          #mergeメソッドで、入力してもらったparamsと一緒に予め別のテーブルに持っている情報を保存する
+  params.require(:item).permit(:name, :text, :category_id, :condition_id, :payer_id, :area_id, :delivery_date_id, :price, :image).merge(user_id: current_user.id)
  end
 
 

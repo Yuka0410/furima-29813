@@ -35,7 +35,8 @@ class User < ApplicationRecord
 
   validates :email, presence: true
   validates :email, uniqueness: { case_sensitive: false } # これは大文字、小文字を区別しなくなる
-  # メッセージはブラウザに出るため不要
+  # @メッセージはブラウザに出るため不要
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  
 end
 

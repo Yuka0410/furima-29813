@@ -9,21 +9,19 @@ class Item < ApplicationRecord
    belongs_to_active_hash :area
    belongs_to_active_hash :delivery_date
 
-   #ActiveHushのバリデーション  
-   validates :category, presence: true #can't be blankは表示されない
-   validates :category_id, numericality: { other_than: 1 }, message: "Select"
-   validates :condition, presence: true
-   validates :condition_id, numericality: { other_than: 1 }, message: "Select"
-   validates :payer, presence: true
-   validates :payer_id, numericality: { other_than: 1 }, message: "Select"
-   validates :area, presence: true
-   validates :area_id, numericality: { other_than: 0 }, message: "Select"
-   validates :delivery_date, presence: true
-   validates :delivery_date_id, numericality: { other_than: 1 }, message: "Select"
-   #普通のバリデーション 
    validates :image, presence: true
    validates :name, presence: true
    validates :text, presence: true
+   validates :category_id, presence: true 
+   validates :category_id, numericality: { other_than: 1 ,message: "Select"}
+   validates :condition, presence: true
+   validates :condition_id, numericality: { other_than: 1 ,message: "Select"}
+   validates :payer, presence: true
+   validates :payer_id, numericality: { other_than: 1 ,message: "Select"}
+   validates :area, presence: true
+   validates :area_id, numericality: { other_than: 0 ,message: "Select"}
+   validates :delivery_date, presence: true
+   validates :delivery_date_id, numericality: { other_than: 1 ,message: "Select"}
    validates :price, presence: true
    validates :price, format: {with: /\A[0-9]+\z/, message: "Half-width characters."}
    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "Out of setting range"}

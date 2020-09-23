@@ -9,17 +9,17 @@ class Item < ApplicationRecord
    belongs_to_active_hash :area
    belongs_to_active_hash :delivery_date
 
-   #ActiveHushのバリデーション                   
-   validates :name, :text, :category, presence: true
-   validates :category_id, numericality: { other_than: 1 }
-   validates :name, :text, :condition, presence: true
-   validates :condition_id, numericality: { other_than: 1 }
-   validates :name, :text, :payer, presence: true
-   validates :payer_id, numericality: { other_than: 1 }
-   validates :name, :text, :area, presence: true
-   validates :area_id, numericality: { other_than: 0 }
-   validates :name, :text, :delivery_date, presence: true
-   validates :delivery_date_id, numericality: { other_than: 1 }
+   #ActiveHushのバリデーション  
+   validates :category, presence: true #can't be blankは表示されない
+   validates :category_id, numericality: { other_than: 1 }, message: "Select"
+   validates :condition, presence: true
+   validates :condition_id, numericality: { other_than: 1 }, message: "Select"
+   validates :payer, presence: true
+   validates :payer_id, numericality: { other_than: 1 }, message: "Select"
+   validates :area, presence: true
+   validates :area_id, numericality: { other_than: 0 }, message: "Select"
+   validates :delivery_date, presence: true
+   validates :delivery_date_id, numericality: { other_than: 1 }, message: "Select"
    #普通のバリデーション 
    validates :image, presence: true
    validates :name, presence: true

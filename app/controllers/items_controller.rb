@@ -23,14 +23,13 @@ class ItemsController < ApplicationController
   #def show
    # @items = Item.show
   #end
-end
 
 
 
-private
+ private
 
  def item_params          #mergeメソッドで、入力してもらったparamsと一緒に予め別のテーブルに持っている情報を保存する
   params.require(:item).permit(:name, :text, :category_id, :condition_id, :payer_id, :area_id, :delivery_date_id, :price, :image).merge(user_id: current_user.id)
  end
 
-
+end

@@ -7,53 +7,79 @@ RSpec.describe Item, type: :model do
     end
 
     it 'すべての値が正しく入力されていれば保存できること' do
-      #expect(@item).to be_valid
+      expect(@item).to be_valid
     end
 
     it 'imageが空だと保存できないこと' do
+      @item.image = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Image can't be blank")
     end
 
     it 'nameが空だと保存できないこと' do
-      #item.name = ''
-      #@item.valid?
-      #expect(@item.errors.full_messages).to include("Name can't be blank")
+      @item.name = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Name can't be blank")
     end
     
     it 'textが空だと保存できないこと' do
+      @item.text = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Text can't be blank") 
     end
     
-    it 'category_idが空だと保存できないこと' do
+    it 'category_idを選択していないと保存できないこと' do
+      @item.category_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category Select")
+      end
+    
+    it 'condition_idを選択していないと保存できないこと' do
+      @item.condition_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Condition Select") 
+    end
+
+    it 'payer_idを選択していないと保存できないこと' do
+      @item.payer_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Payer Select") 
     end
     
-    it 'condition_idが空だと保存できないこと' do
+    it 'area_idを選択していないと保存できないこと' do
+      @item.area_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Area Select") 
     end
     
-    it 'payer_idが空と保存できないこと' do
-    end
-    
-    it 'area_idが空だと保存できないこと' do
-    end
-    
-    it 'delivery_date_idが空だと保存できないこと' do
+    it 'delivery_date_idを選択していないと保存できないこと' do
+      @item.delivery_date_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Delivery date Select") 
     end
     
     it 'priceが空だと保存できないこと' do
+      @item.price = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price can't be blank") 
     end
     
     it 'priceは半角数字でないと保存できないこと' do
-     # @user.password = 'aaaaaa'
-      #@user.password_confirmation = 'aaaaaa'
-      #@user.valid?
-      #expect(@user.errors.full_messages).to include("")
+      @item.price = '１２３４５'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price Half-width number")
     end
     
     it 'priceは300~9999999の間でないと保存できないこと' do
+      @item.price = '10'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price Out of setting range")
     end
     
     it 'userが結びついていないと保存できないこと' do
-      #@item.user = nil
-      #@item.valid?
-      #expect(@item.errors.full_messages).to include("User must exist")
+      @item.user = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("User must exist")
     end
   end
 end

@@ -21,65 +21,65 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Name can't be blank")
     end
-    
+
     it 'textが空だと保存できないこと' do
       @item.text = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Text can't be blank") 
+      expect(@item.errors.full_messages).to include("Text can't be blank")
     end
-    
+
     it 'category_idを選択していないと保存できないこと' do
       @item.category_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category Select")
-      end
-    
+      expect(@item.errors.full_messages).to include('Category Select')
+    end
+
     it 'condition_idを選択していないと保存できないこと' do
       @item.condition_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Condition Select") 
+      expect(@item.errors.full_messages).to include('Condition Select')
     end
 
     it 'payer_idを選択していないと保存できないこと' do
       @item.payer_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Payer Select") 
+      expect(@item.errors.full_messages).to include('Payer Select')
     end
-    
+
     it 'area_idを選択していないと保存できないこと' do
       @item.area_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Area Select") 
+      expect(@item.errors.full_messages).to include('Area Select')
     end
-    
+
     it 'delivery_date_idを選択していないと保存できないこと' do
       @item.delivery_date_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery date Select") 
+      expect(@item.errors.full_messages).to include('Delivery date Select')
     end
-    
+
     it 'priceが空だと保存できないこと' do
       @item.price = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price can't be blank") 
+      expect(@item.errors.full_messages).to include("Price can't be blank")
     end
-    
+
     it 'priceは半角数字でないと保存できないこと' do
       @item.price = '１２３４５'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price Half-width number")
+      expect(@item.errors.full_messages).to include('Price Half-width number')
     end
-    
+
     it 'priceは300~9999999の間でないと保存できないこと' do
       @item.price = '10'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price Out of setting range")
+      expect(@item.errors.full_messages).to include('Price Out of setting range')
     end
-    
+
     it 'userが結びついていないと保存できないこと' do
       @item.user = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("User must exist")
+      expect(@item.errors.full_messages).to include('User must exist')
     end
   end
 end

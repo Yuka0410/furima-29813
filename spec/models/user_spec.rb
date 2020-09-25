@@ -87,7 +87,7 @@ RSpec.describe User, type: :model do
       @user.password = 'aaaaaa'
       @user.password_confirmation = 'aaaaaa'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password include both letters and numbers", "Password confirmation include both letters and numbers")
+      expect(@user.errors.full_messages).to include('Password include both letters and numbers', 'Password confirmation include both letters and numbers')
     end
     it 'passwordが存在してもpassword_confirmationが空では保存できない' do
       @user.password_confirmation = ''

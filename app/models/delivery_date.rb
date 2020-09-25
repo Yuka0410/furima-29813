@@ -1,4 +1,4 @@
-class DeliveryDate < ActiveHash::Base #モデルの性質上_はなくなりDate大文字になる
+class DeliveryDate < ActiveHash::Base # モデルの性質上_はなくなりDate大文字になる
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '1~2日で発送' },
@@ -6,4 +6,3 @@ class DeliveryDate < ActiveHash::Base #モデルの性質上_はなくなりDate
     { id: 4, name: '4~7日で発送' }
   ]
 end
-

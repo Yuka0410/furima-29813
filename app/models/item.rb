@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
-  # has_one :purchase
+  
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
@@ -23,7 +23,7 @@ class Item < ApplicationRecord
     end 
  end
    
-   # validates :price, format: {with: /\A[0-9]+\z/, message: "Half-width characters."} itemモデルはintegerなので半角数字以外は0に変換する仕様になってるのでメッセージだけで良い
+   
    validates :price, numericality: { message: 'Half-width number' }
    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'Out of setting range' }
 end

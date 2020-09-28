@@ -3,9 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   has_many :items
-  
 
   # 注意！見本はfirst_name,last_nameにしているが本アプリはfamily_nameとfirst_nameにしてしまった
 

@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.valid?
+    if @item.destory
       redirect_to root_path
     else
       render :show

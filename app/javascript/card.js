@@ -6,13 +6,13 @@ const pay = () => {
    const formResult = document.getElementById("charge-form");//idでフォームの情報を取得し、それをFormDataオブジェクトとして生成
    const formData = new FormData(formResult); //FormData別カリキュラム参照
    const card = {
-     number: formData.get("number"),//上記のメソッドで入力した値を取得,変数cardに代入。
-     cvc: formData.get("cvc"), //formDataの引数にはname =""をいれる決まり
-     exp_month: formData.get("exp_month"),
-     exp_year: `20${formData.get("exp_year")}`, 
+     number: formData.get("purchase_address[number]"),//上記のメソッドで入力した値を取得,変数cardに代入。
+     cvc: formData.get("purchase_address[cvc]"), //formDataの引数にはname =""をいれる決まり。よってform_with変えたらをnameも変える
+     exp_month: formData.get("purchase_address[exp_month]"),
+     exp_year: `20${formData.get("purchase_address[exp_year]")}`, 
    };
-
    Payjp.createToken(card, (status, response) => { 
+     
      if (status == 200) {
        const token = response.id;
        const renderDom = document.getElementById("charge-form");

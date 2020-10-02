@@ -17,12 +17,12 @@ RSpec.describe PurchaseAddress, type: :model do
     it 'postal_codeが空だと保存できないこと' do
       @purchase_address.postal_code = nil
       @purchase_address.valid?
-      expect(@purchase_address.errors.full_messages).to include("Postal code can't be blank", "Postal code Input correctly")
+      expect(@purchase_address.errors.full_messages).to include("Postal code can't be blank", 'Postal code Input correctly')
     end
     it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
       @purchase_address.postal_code = '12-34567'
       @purchase_address.valid?
-      expect(@purchase_address.errors.full_messages).to include("Postal code Input correctly")
+      expect(@purchase_address.errors.full_messages).to include('Postal code Input correctly')
     end
     it 'area_idを選択していないと保存できないこと' do
       @purchase_address.area_id = 0
@@ -46,12 +46,12 @@ RSpec.describe PurchaseAddress, type: :model do
     it 'phone_numberが空だと保存できないこと' do
       @purchase_address.phone_number = nil
       @purchase_address.valid?
-      expect(@purchase_address.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid. Input Include half-width numbers", "Phone number can't be blank")
+      expect(@purchase_address.errors.full_messages).to include("Phone number can't be blank", 'Phone number is invalid. Input Include half-width numbers', "Phone number can't be blank")
     end
     it 'phone_numberが半角数字のハイフンを含まない形式でないと保存できないこと' do
       @purchase_address.phone_number = '０９０−１２３４−５６７８'
       @purchase_address.valid?
-      expect(@purchase_address.errors.full_messages).to include("Phone number is invalid. Input Include half-width numbers", "Phone number is too long (maximum is 11 characters)")
+      expect(@purchase_address.errors.full_messages).to include('Phone number is invalid. Input Include half-width numbers', 'Phone number is too long (maximum is 11 characters)')
     end
   end
 end

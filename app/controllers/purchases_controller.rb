@@ -1,13 +1,16 @@
 class PurchasesController < ApplicationController
-  
+  before_action :authenticate_user!
+  before_action :set_item_id, only: [:index, :create, :pay_item]
+
   def index
-    @item = Item.find(params[:item_id])
+      if current_user.id == @item.user_id 
+       redirect_to root_path 
+      end
     @purchase = PurchaseAddress.new
   end
 
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase = PurchaseAddress.new(purchase_params) #purchaseは保存できないaddressだ
     if @purchase.valid?
       pay_item
@@ -24,8 +27,11 @@ class PurchasesController < ApplicationController
     params.require(:purchase_address).permit(:postal_code, :area_id, :city, :block, :building_name, :phone_number).merge(token: params[:token], item_id: params[:item_id], user_id: current_user.id)                                                                                                      # .merge(user_id: current_user.id)
   end                                                                                                                                                                      #deciseがあるからこの書き方                                                                                  
 
-  def pay_item
+  def set_item_id
     @item = Item.find(params[:item_id])
+  end
+
+  def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item.price,

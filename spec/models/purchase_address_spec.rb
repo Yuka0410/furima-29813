@@ -53,5 +53,10 @@ RSpec.describe PurchaseAddress, type: :model do
       @purchase_address.valid?
       expect(@purchase_address.errors.full_messages).to include('Phone number is invalid. Input Include half-width numbers', 'Phone number is too long (maximum is 11 characters)')
     end
+    it 'phone_numberが12桁以上だと保存できない' do
+      @purchase_address.phone_number = '090123456789'
+      @purchase_address.valid?
+      expect(@purchase_address.errors.full_messages).to include('Phone number is invalid. Input Include half-width numbers', 'Phone number is too long (maximum is 11 characters)')
+    end
   end
 end

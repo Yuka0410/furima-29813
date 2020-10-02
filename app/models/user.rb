@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
+  has_many :purchases
 
   # 注意！見本はfirst_name,last_nameにしているが本アプリはfamily_nameとfirst_nameにしてしまった
 
